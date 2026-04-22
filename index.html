@@ -3,9 +3,7 @@
 
 <head>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-
-
-  <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
+ <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
 
   <style>
     body {
@@ -80,6 +78,10 @@
   <!-- End Google Tag Manager (noscript) -->
   <!-- ======= Header ======= -->
   <header id="header" class="header-tops">
+    <div id="camera-box" style="margin-top: 30px; display: flex; flex-direction: column; align-items: center;">
+  <h3 style="color: white; font-weight: bold; margin-bottom: 15px;">Teachable Machine (p5.js)</h3>
+  <div id="canvas-container"></div>
+</div>
 
     <div class="container">
 
@@ -650,15 +652,19 @@
       classifier = ml5.imageClassifier(modelURL);
     }
 
-    function setup() {
-      createCanvas(320, 260);
+   function setup() {
+  // Create the canvas and store it in a variable
+  let canvas = createCanvas(320, 260);
+  
+  // This line pushes the canvas into the div we created in Step 1
+  canvas.parent('canvas-container');
 
-      video = createCapture(VIDEO);
-      video.size(320, 240);
-      video.hide();
+  video = createCapture(VIDEO);
+  video.size(320, 240);
+  video.hide();
 
-      classifyVideo();
-    }
+  classifyVideo();
+}
 
     function draw() {
       background(0);
